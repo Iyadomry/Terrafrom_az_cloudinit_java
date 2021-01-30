@@ -1,0 +1,23 @@
+#cloud-config
+package_upgrade: true
+users:
+  - name: adminuser
+    groups: wheel
+    lock_passwd: false
+    passwd: PASSWORD_HASH
+    shell: /bin/bash
+    ssh_pwauth: true
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - ssh-rsa
+runcmd:
+  - sudo apt update -y
+  - sudo apt-get install  default-jdk -y
+  - sudo apt-get install git -y
+  #- sudo git clone https://github.com/macagua/example.java.helloworld.git
+  #- sudo javac example.java.helloworld/HelloWorld/Main.java
+  #- sudo java -cp . HelloWorld.Main
+  #- sudo jar cfme Main.jar Manifest.txt HelloWorld.Main HelloWorld/Main.class
+  #- sudo java -jar Main.jar
+  - sudo javac /home/adminuser/javacode.java
+  - sudo java /home/adminuser/MyFirstProgram
